@@ -1,6 +1,6 @@
-module.exports = function(difficulty) {
+module.exports = function Hashcash (difficulty) {
   
-  function isValid(input) {
+  function isValid (input) {
     var parts = input.split(':');
     
     if (parts[1] < difficulty) {
@@ -10,7 +10,7 @@ module.exports = function(difficulty) {
     return true;
   }
   
-  return function(req, res, next) {
+  return function HashcashMiddleware (req, res, next) {
     var cash = req.headers['X-Hashcash'];
     if (!cash) return res.error('Not enough hashcash.  Please try again.');
     

@@ -1,0 +1,36 @@
+{
+  "name": "hashcasher",
+  "version": "0.1.0",
+  "description": "Protect online forms from spam by making them perform Proof of Work (PoW).",
+  "main": "contrib/middleware.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martindale/hashcasher.git"
+  },
+  "keywords": [
+    "hashcash",
+    "spam",
+    "fraud",
+    "forms",
+    "html",
+    "browser",
+    "proof-of-work"
+  ],
+  "author": "Eric Martindale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martindale/hashcasher/issues"
+  },
+  "homepage": "https://github.com/martindale/hashcasher#readme",
+  "devDependencies": {
+    "coveralls": "^2.13.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  }
+}
