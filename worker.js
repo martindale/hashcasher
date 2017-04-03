@@ -13,7 +13,7 @@ onmessage = function(e) {
   for (var counter = 0; bits < difficulty; counter++) {
     var chunks = [
       '2', // Hashcash version number.  Note that this is 2, as opposed to 1.
-      difficulty, // asserted number of bits that this cash matches
+      bits, // asserted number of bits that this cash matches
       'sha3', // ADDITION FOR VERSION 2: specify the hash function used
       date, // YYYYMMDD format.  specification doesn't indicate HHMMSS or lower?
       name, // Input format protocol change, recommend casting any input to hex.
@@ -27,7 +27,12 @@ onmessage = function(e) {
     bits = (match) ? match[0].length : 0;
   }
 
-  postMessage(cash);
+  postMessage({
+    cash: cash,
+    bits: bits,
+    input: chunks.join(':'),
+    data: e.data[0]
+  });
 
   close();
 }
