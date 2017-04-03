@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "NODE_ENV=test mocha --recursive",
+    "coverage": "NODE_ENV=test istanbul cover _mocha -- --recursive"
   },
   "repository": {
     "type": "git",
@@ -29,8 +30,14 @@
   },
   "homepage": "https://github.com/martindale/hashcasher#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
     "coveralls": "^2.13.0",
+    "express": "^4.15.2",
     "istanbul": "^0.4.5",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "sha3": "^1.2.0"
   }
 }

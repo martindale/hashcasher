@@ -73,5 +73,3 @@ function privateEventHandler(e) {
   
   return false;
 }
-
-
