@@ -1,9 +1,22 @@
+var crypto = require('sha3');
+
 module.exports = function Hashcash (difficulty) {
   
   function isValid (input) {
     var parts = input.split(':');
+    var claim = parts[1];
     
-    if (parts[1] < difficulty) {
+    if (claim < difficulty) {
+      return false;
+    }
+    
+    var hash = new crypto.SHA3Hash();
+    hash.update(input);
+    var digest = hash.digest('hex');
+    var match = digest.match(/^(0+)/);
+    var bits = (match) ? match[0].length : 0;
+    
+    if (bits < difficult) {
       return false;
     }
     
