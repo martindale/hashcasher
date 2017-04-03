@@ -21,6 +21,8 @@ function loader (e) {
 function privateEventHandler(e) {
   e.preventDefault();
   var element = this;
+  var errors = element.querySelector('.errors');
+  
   var worker = new Worker('worker.js');
   worker.onmessage = function hashcashWorkerHandler (e) {
     var cash = e.data.cash;
@@ -28,7 +30,7 @@ function privateEventHandler(e) {
     var input = e.data.input;
     var data = e.data.data;
     var xhr = new XMLHttpRequest();
-    
+
     xhr.open('POST', element.target, true);
 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -38,6 +40,29 @@ function privateEventHandler(e) {
     xhr.onreadystatechange = function hashcashStateChange () {
       if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         // Request finished. Do processing here.
+        try {
+          var response = JSON.parse(xhr.responseText);
+        } catch (e) {
+          var response = xhr.responseText;
+        }
+        
+        while (errors.hasChildNodes()) {
+          errors.removeChild(errors.children[0]);
+        }
+
+        if (response && response.status) {
+          if (response.status === 'error') {
+            response.errors.forEach(function(message) {
+              var error = document.createElement('li');
+              error.innerText = message;
+              errors.appendChild(error);
+            });
+          }
+          
+          if (response.status === 'success') {
+            window.location = '/';
+          }
+        }
       }
     }
 
@@ -64,12 +89,8 @@ function privateEventHandler(e) {
   var fieldsEncoded =  Object.keys(fields).map(function(key) {
     return key + '=' + fields[key];
   }).join('&');
-  
-  console.log('submitting work', fields, fieldsEncoded, difficulty);
 
   worker.postMessage([ fieldsEncoded , difficulty ]);
 
-  console.log('collected', fields, ', submitting to', element.target);
-  
   return false;
 }
