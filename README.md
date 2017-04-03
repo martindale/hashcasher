@@ -33,3 +33,7 @@ var hashcash = require('hashcasher')(2);
 app.post('/some-endpoint', hashcash, ...);
 
 ```
+
+## Testing
+`npm install -g http-server` and `http-server .`, then visit
+`localhost:8080/test.html`.
