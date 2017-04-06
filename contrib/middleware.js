@@ -17,7 +17,7 @@ module.exports = function Hashcash (difficulty) {
     var match = digest.match(/^(0+)/);
     var bits = (match) ? match[0].length : 0;
     
-    if (bits < difficult) {
+    if (bits < difficulty) {
       return false;
     }
     
