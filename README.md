@@ -1,4 +1,7 @@
 # hashcasher
+[![Build Status](https://img.shields.io/travis/martindale/hashcasher.svg?branch=master&style=flat-square)](https://travis-ci.org/martindale/hashcasher)
+[![Coverage Status](https://img.shields.io/coveralls/martindale/hashcasher.svg?style=flat-square)](https://coveralls.io/r/martindale/hashcasher)
+
 Protect online forms from spam by making them perform Proof of Work (PoW).
 
 ## Use (Browser)
