@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mocha --recursive",
-    "coverage": "NODE_ENV=test istanbul cover _mocha -- --recursive"
+    "coverage": "NODE_ENV=test istanbul cover _mocha -- --recursive",
+    "build": "webpack hashcasher.js dist/hashcasher.js"
   },
   "repository": {
     "type": "git",
